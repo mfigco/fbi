@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'League Gothic';
+  font-style: normal;
+  src: url("https://fonts.googleapis.com/css2?family=League+Gothic");
+  src: url(https://fonts.gstatic.com/s/leaguegothic/v5/qFdR35CBi4tvBz81xy7WG7ep-BQAY7Krj7feObpH_9aug9UKQw.woff2) format('woff2');
+}
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	overflow: visible;
+}
+
+.App {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 1vmin;
+    color: white;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    text-align: start;
+    vertical-align: middle;
+  }
+  
+  header {
+    min-height: 20vh;
+    width: 100vw;
+    display: flex;
+    flex: initial;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 10em;
+  }
+
+  .body{
+    min-height: 50vh;
+    width: 100vw;
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  footer{
+    min-height: 10vh;
+    height: 20vh;
+    width: 100vw;
+    display: flex;
+    flex: initial;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;  
+  }
