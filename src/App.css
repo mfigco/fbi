@@ -12,24 +12,37 @@
 	overflow: visible;
 }
 
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+#root{
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .App {
     font-family: 'League Gothic', sans-serif;
     font-size: 1vmin;
     color: white;
-    background-color: black;
     height: 100vh;
-    width: 100vw;
+    width: 90vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    text-align: start;
+    justify-content: flex-start;
+    text-align: flex-start;
     vertical-align: middle;
   }
   
   header {
-    min-height: 20vh;
-    width: 100vw;
+    min-height: 20%;
+    width: 100%;
     display: flex;
     flex: initial;
     flex-direction: row;
@@ -41,9 +54,9 @@
     font-size: 10em;
   }
 
-  .body{
-    min-height: 50vh;
-    width: 100vw;
+  .body {
+    min-height: 50%;
+    width: 100%;
     display: flex;
     flex: auto;
     flex-direction: row;
@@ -52,13 +65,106 @@
     justify-content: space-around;
   }
 
-  footer{
-    min-height: 10vh;
-    height: 20vh;
-    width: 100vw;
+  footer {
+    min-height: 10%;
+    height: 20%;
+    width: 100%;
     display: flex;
     flex: initial;
     flex-direction: row;
     align-items: center;
     justify-content: center;  
   }
+
+  .img-container {
+    display: flex;
+    flex: initial;
+    width: 40%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .img-container img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    padding: 2em;
+  }
+
+ .search-fields {
+    display: flex;
+    flex: initial;
+    width: 50%;
+    height: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+ }
+
+ .search-fields > div {
+   display: flex;
+   flex: auto;
+   flex-direction: row;
+   width: 100%;
+   font-size: 3.5em;
+   align-items: center;
+   justify-content: space-between;
+ }
+
+ .search-fields h2 {
+   width: 2em;
+   margin-right: 1em;
+ }
+
+ .radio-div {
+   display: flex;
+   flex: auto;
+   align-items: center;
+   justify-content: space-between;
+   color: gray;
+ }
+
+ .radio-div label {
+  cursor: pointer;
+ }
+
+ .radio-div label:hover, 
+ .radio-div label:focus {
+  color: white;
+ }
+
+ input[type="checkbox"] {
+   visibility: collapse;
+ }
+
+ input[type="number"] {
+   width: 2em;
+   -moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+  opacity: 1;
+}
+
+ button {
+  font-family: inherit;
+  font-size: 4em;
+  border-radius: 0;
+  height: 2em;
+  width: 8em;
+  border: 0.1em solid gray;
+  color: gray;
+  background: none;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  border-color: white;
+  color: white;
+  outline: 0;
+}

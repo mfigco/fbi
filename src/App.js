@@ -13,14 +13,14 @@ function App() {
         <form className="search-fields">
             <div>
                 <h2>Age</h2>
-                <input type="number"/>
+                <input type="number" defaultValue="20" onfocus="this.value=''" min="20" max="80"/>
                 <label>to</label>
-                <input type="number"/>
+                <input type="number" defaultValue="80" onfocus="this.value=''" min="20" max="80"/>
                 <label>years</label>
             </div>
             <div>
                 <h2>Sex</h2>
-                <div>
+                <div className = "radio-div">
                     <input type="radio" id="sex-any" name="sex"/>
                     <label htmlFor="sex-any">Any</label>
                     <input type="radio" id="sex-male" name="sex"/>
@@ -31,7 +31,7 @@ function App() {
             </div>
             <div>
                 <h2>Hair</h2>
-                <div>
+                <div className = "radio-div">
                     <input type="radio" id="hair-any" name="hair"/>
                     <label htmlFor="hair-any">Any</label>
                     <input type="radio" id="hair-gray" name="hair"/>
@@ -46,7 +46,7 @@ function App() {
             </div>
             <div>
                 <h2>Eyes</h2>
-                <div>
+                <div className = "radio-div">
                     <input type="radio" id="eyes-any" name="eyes"/>
                     <label htmlFor="eyes-any">Any</label>
                     <input type="radio" id="eyes-brown" name="eyes"/>
