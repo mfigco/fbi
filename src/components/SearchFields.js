@@ -19,14 +19,16 @@ class SearchFields extends React.Component {
     }
 
     // updates selected options in state.
-    handleChange(evt) {
+    updateSelected = (evt) => {
+        //console.log("Updating that state");
+        evt.preventDefault();
         try {
             const targetName = evt.target.name;
             const targetValue = evt.target.value;
             this.setState(prevState => {
                 let selected = {...prevState.selected};
                 selected[targetName] = targetValue;
-                console.log(this.state.selected[targetName]);
+                //console.log(this.state.selected[targetName]);
                 return {selected};
             });
         } catch (error) {
@@ -39,7 +41,8 @@ class SearchFields extends React.Component {
             return (
             <div key={name}>
                 <h2>{name}</h2>
-                <RadioDiv name={name} key={`${name}Div`} options={options} onChange={this.handleChange}/>
+                <RadioDiv name={name} key={`${name}Div`} options={options} updateSelected = {this.updateSelected} 
+                selected={this.state.selected[name]}/>
             </div>
             )
         });

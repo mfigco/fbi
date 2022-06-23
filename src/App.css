@@ -109,7 +109,7 @@ input {
    width: 100%;
    font-size: 3.5em;
    align-items: center;
-   justify-content: space-between;
+   justify-content: flex-start;
  }
 
  .search-fields h2 {
@@ -121,36 +121,32 @@ input {
    display: flex;
    flex: auto;
    align-items: center;
-   justify-content: space-between;
+   justify-content: flex-start;
    color: gray;
  }
 
- .radio-div label {
+ .radio-div > button {
+  font-family: inherit;
+  font-size: 1.2em;
+  width: 4em;
+  border-radius: 0;
+  color: gray;
+  background: none;
   cursor: pointer;
- }
+  border: none;
+}
 
- .radio-div label:hover, 
- .radio-div label:focus {
+.radio-div > .selected-button {
   color: white;
- }
-
- input[type="checkbox"] {
-   visibility: collapse;
- }
-
- input[type="number"] {
-   width: 2em;
-   -moz-appearance: textfield;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-  opacity: 1;
+.radio-div > button:hover,
+.radio-div > button:focus {
+  color: white;
+  outline: 0;
 }
 
- button {
+ footer > button {
   font-family: inherit;
   font-size: 4em;
   border-radius: 0;
@@ -162,8 +158,8 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-button:hover,
-button:focus {
+footer > button:hover,
+footer > button:focus {
   border-color: white;
   color: white;
   outline: 0;
