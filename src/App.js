@@ -17,39 +17,48 @@ class App extends React.Component{
         {name: "Eyes", options: ["Any","Brown","Blue","Green","Dark"]}
         ],
         selected: {},
-        wanted: [],
         wantedFiltered: [],
-        display: {inSearch: false, resultNumber: 0, resultIndex: 0}
+        // resultNumber specifies the number of currently loaded results, not total results
+        display: {inSearch: false, resultNumber: 0, resultIndex: 0, pageLoaded: 0, loadedAll: false}
     }
   }
 
     componentDidMount() {
         this.initSelected();
-        this.initWanted();
     }
 
-    async initWanted() {
-        const wanted = getWantedList();
-        this.setState({wanted: wanted, wantedFiltered: wanted});
-    }
-
-    startSearch = () =>{
-        const {Sex, Hair, Eyes} = this.state.selected;
-        const newFilteredWanted = this.state.wanted.filter(crmnl => {
-            // lowercase Eyes and Hair to match API JSON. Note Sex case does not change
-            const sexMatch = (crmnl.sex === Sex) || (Sex === "Any");
-            const eyesMatch = (crmnl.eyes === Eyes.toLowerCase()) || (Eyes === "Any");
-            const hairMatch = (crmnl.hair === Hair.toLowerCase()) || (Hair === "Any");
-            //console.log(`Sex. ${sexMatch}`);
-            return (sexMatch && eyesMatch && hairMatch);
-        });
-        console.log(newFilteredWanted);
-        this.setState({wantedFiltered: newFilteredWanted});
+    startSearch = async() => {
         this.setState(prevState => {
             let display = {...prevState.display};
             display.inSearch = true;
-            display.resultNumber = newFilteredWanted.length;
             return {display};
+        })
+        await this.searchWanted();
+    }
+
+    searchWanted = async () => {
+        const {Sex, Hair, Eyes} = this.state.selected;
+        const dsp = this.state.display;
+        if (dsp.loadedAll) {
+            return;
+        }
+        const newWanted = await getWantedList(Sex, Hair, Eyes, dsp.pageLoaded + 1);
+        if (newWanted.length === 0) {
+            this.setState(prevState => {
+                let display = {...prevState.display};
+                display.loadedAll = true;
+                return {display};
+            });
+            return;
+        }
+        //console.log(newWanted);
+        this.setState(prevState => {
+            let display = {...prevState.display};
+            display.resultNumber += newWanted.length;
+            display.pageLoaded += 1;
+            const wantedFiltered = [...prevState.wantedFiltered, ...newWanted];
+            console.log(wantedFiltered);
+            return {display, wantedFiltered};
         });
     }
 
@@ -90,7 +99,14 @@ class App extends React.Component{
 
     nextResult = () => {
         const dsp = this.state.display;
-        if (dsp.inSearch && (dsp.resultNumber > (dsp.resultIndex + 1))) {
+        if (!dsp.inSearch) {
+            return;
+        }
+        // load more results at this totally arbitrary point
+        if (!dsp.loadedAll && (dsp.resultNumber < (dsp.resultIndex + 4))) {
+            this.searchWanted();
+        }
+        if (dsp.resultNumber > (dsp.resultIndex + 1)) {
             this.setState(prevState => {
                 let display = {...prevState.display};
                 display.resultIndex += 1;
@@ -111,7 +127,7 @@ class App extends React.Component{
     }
 
     resetSearch = () => {
-        this.setState({display: {inSearch: false, resultNumber: 0, resultIndex: 0}});
+        this.setState({display: {inSearch: false, resultNumber: 0, resultIndex: 0, pageLoaded: 0, loadedAll: false}});
         this.initSelected();
     }
 
