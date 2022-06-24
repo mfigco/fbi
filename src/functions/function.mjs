@@ -9,23 +9,12 @@ function shuffleArray(array) {
 
 const getCriminal = async (sex, hair, eyes) => {
     let fbiUrl = 'https://api.fbi.gov/wanted/v1/list?';
-
-    if (sex != 'any') {
-        fbiUrl += ('sex=' + sex + '&');
-    }
-    if (hair != 'any') {
-        fbiUrl += ('hair=' + hair + '&');
-    }
-    if (eyes != 'any') {
-        fbiUrl += ('eyes=' + eyes + '&');
-    }
-    //console.log(fbiUrl);
     const api = await fetch(fbiUrl);
     const data = await api.json();
     const arr = data.items;
 
     shuffleArray(arr);
-    console.log(arr[1].nationality);
+//    console.log(arr[1].nationality);
     return arr;
 };
 
@@ -39,4 +28,4 @@ const shiftCriminal = (array) => {
 
 
 console.log(getCriminal('male','blond','blue'));
-console.log(shiftCriminal([1,2,3,4]));
+//console.log(shiftCriminal([1,2,3,4]));
