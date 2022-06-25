@@ -79,7 +79,7 @@ input {
   .img-container {
     display: flex;
     flex: initial;
-    width: 40%;
+    width: 30%;
     height: 100%;
     align-items: center;
     justify-content: center;

@@ -1,4 +1,5 @@
 import placeholder from './placeholder.jpg';
+import notFound from './notfound.jpg'
 import './App.css';
 import SearchFields from "./components/SearchFields.js"
 import ImageContainer from "./components/ImageContainer.js"
@@ -57,7 +58,7 @@ class App extends React.Component{
             display.resultNumber += newWanted.length;
             display.pageLoaded += 1;
             const wantedFiltered = [...prevState.wantedFiltered, ...newWanted];
-            console.log(wantedFiltered);
+            // console.log(wantedFiltered);
             return {display, wantedFiltered};
         });
     }
@@ -142,7 +143,8 @@ class App extends React.Component{
         <div className="body">
             <SearchFields fields={this.state.fields} selected={this.state.selected}
              updateSelected={this.updateSelected} display={this.state.display}/>
-            <ImageContainer img={placeholder} display={this.state.display} wanted={this.state.wantedFiltered}/>
+            <ImageContainer img={placeholder} inSearch = {this.state.display.inSearch} 
+            index = {this.state.display.resultIndex} wanted={this.state.wantedFiltered} notFound={notFound}/>
         </div>
         <Footer search={this.startSearch} display={this.state.display} previous={this.prevResult} 
         next={this.nextResult} reset={this.resetSearch}/>
