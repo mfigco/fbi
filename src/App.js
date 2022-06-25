@@ -128,13 +128,14 @@ class App extends React.Component{
     }
 
     resetSearch = () => {
-        this.setState({display: {inSearch: false, resultNumber: 0, resultIndex: 0, pageLoaded: 0, loadedAll: false}});
+        this.setState({display: {inSearch: false, resultNumber: 0, resultIndex: 0, pageLoaded: 0, loadedAll: false},
+                       wantedFiltered : []});
         this.initSelected();
     }
 
   render() {
     return (
-        <div className="App">
+        <div className={`App ${this.state.display.inSearch? "inSearch" : ""}`}>
         <header>
           <h1>
             FBI Most Wanted
@@ -142,7 +143,7 @@ class App extends React.Component{
         </header>
         <div className="body">
             <SearchFields fields={this.state.fields} selected={this.state.selected}
-             updateSelected={this.updateSelected} display={this.state.display}/>
+             updateSelected={this.updateSelected} display={this.state.display} wanted={this.state.wantedFiltered}/>
             <ImageContainer img={placeholder} inSearch = {this.state.display.inSearch} 
             index = {this.state.display.resultIndex} wanted={this.state.wantedFiltered} notFound={notFound}/>
         </div>

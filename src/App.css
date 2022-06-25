@@ -12,13 +12,6 @@
 	overflow: visible;
 }
 
-input {
-  -webkit-appearance: none;
-  appearance: none;
-  font-family: inherit;
-  font-size: 100%;
-}
-
 #root{
   background-color: black;
   display: flex;
@@ -31,7 +24,7 @@ input {
     font-size: 1vmin;
     color: white;
     height: 100vh;
-    width: 90vw;
+    width: 80vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,6 +32,10 @@ input {
     text-align: center;
     vertical-align: middle;
   }
+
+#root > .inSearch {
+  width: 70vw;
+}
   
   header {
     min-height: 20%;
@@ -117,12 +114,27 @@ input {
    margin-right: 1em;
  }
 
+ .search-fields h3 {
+   width: 100%;
+   font-size: 2em;
+ }
+
  .radio-div {
    display: flex;
    flex: auto;
    align-items: center;
    justify-content: flex-start;
    color: gray;
+ }
+
+ .searchLabel {
+  font-family: inherit;
+  font-size: 1.2em;
+  width: 100%;
+  border-radius: 0;
+  color: white;
+  background: none;
+  border: none;
  }
 
  .radio-div > button {

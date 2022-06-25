@@ -20,7 +20,7 @@ class ImageContainer extends React.Component {
     render() {
         let image;
         const wanted = this.props.wanted;
-        if (!this.props.inSearch || (wanted === undefined) || (wanted.length === 0)) {
+        if (!this.props.inSearch || !Array.isArray(wanted) || (wanted.length === 0)) {
             image = <img src={this.props.img} className="wanted-photo" alt="FBI Most Wanted"/>
         } else {
             const current = wanted[this.props.index];
